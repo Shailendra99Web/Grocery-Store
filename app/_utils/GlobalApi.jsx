@@ -1,7 +1,7 @@
 const { default: axios } = require("axios");
 
 const axiosClient = axios.create({
-    baseURL: 'http://44.211.47.231:1337/api'
+    baseURL: 'https://roxana99web.hopto.org/api'
 })
 
 const getCategory = () => axiosClient.get('/categories?populate=*');
