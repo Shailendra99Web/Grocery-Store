@@ -84,7 +84,7 @@ const PaymentConfirmation = () => {
     }
 
     return (
-        <div className='my-7 mx-auto border w-1/2'>
+        <div className='my-7 mx-4 sm:mx-auto border sm:w-1/2 md:w-2/5'>
             <h2 className='p-3 bg-gray-200 font-bold text-center'>Total Cart ({cartItemList.length})</h2>
             <div className='p-4 flex flex-col gap-4'>
                 <h2 className='font-bold flex justify-between'>Subtotal: <span>${subTotal}</span></h2>
