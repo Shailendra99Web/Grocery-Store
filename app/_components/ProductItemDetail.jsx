@@ -56,7 +56,7 @@ const ProductItemDetail = ({ product }) => {
     }
 
     return (
-        <div className='grid grid-cols-1 p-2 sm:space-x-5 bg-white text-black'>
+        <div className='grid grid-cols-1 lg:grid-cols-2 p-2 sm:space-x-5 bg-white text-black'>
             <Image src={process.env.NEXT_PUBLIC_BACKEND_BASE_URL + product?.attributes?.images?.data[0]?.attributes?.url} unoptimized={true} width={320} height={320} alt={product.attributes.name} className='bg-slate-200 p-2 w-80 h-auto lg:w-auto object-contain rounded-lg' />
 
             <div className='flex flex-col gap-3 pt-2 items-center'>
@@ -71,7 +71,7 @@ const ProductItemDetail = ({ product }) => {
                 </div>
 
                 <h2 className='hidden sm:block font-bold text-lg'>Quantity: {product.attributes.itemQuantity + product.attributes.itemQuantityType}</h2>
-                <div className='flex flex-col items-baseline'>
+                <div className='flex flex-col items-center'>
                     <div className='flex gap-3 items-center'>
                         <div className=' border flex items-center'>
                             <button className='px-5 py-2 border-e-2' disabled={quantity == 1} onClick={() => setQuantity(quantity - 1)}>-</button>

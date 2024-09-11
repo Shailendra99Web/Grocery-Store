@@ -29,7 +29,7 @@ const ProductItem = ({ product }) => {
                     <DialogTrigger asChild>
                         <Button variant="outline" className='text-primary hover:text-white hover:bg-primary'>Add to cart</Button>
                     </DialogTrigger>
-                    <DialogContent className="max-h-[95vh] max-w-96 overflow-auto p-4">
+                    <DialogContent className="max-h-[95vh] max-w-96 lg:max-w-[60%] overflow-auto p-4">
                         <DialogHeader>
                             <DialogTitle></DialogTitle>
                             <DialogDescription>

@@ -120,7 +120,7 @@ const Header = () => {
                     <SheetTrigger>
                         <h2 className='flex gap-2 items-center text-lg'><ShoppingBasket className="h-7 w-7" /><span className='bg-primary text-white px-2 rounded-full'>{totalCartItem}</span></h2>
                     </SheetTrigger>
-                    <SheetContent className="fixed inset-0 sm:!left-auto w-screen h-screen p-4">
+                    <SheetContent className="fixed inset-0 !left-auto w-screen h-screen p-4">
                         <SheetHeader className='h-full flex flex-col'>
                             <SheetTitle className='bg-primary text-white font-bold text-lg p-2'>My Cart</SheetTitle>
                             <SheetDescription className='overflow-auto'>
