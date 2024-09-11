@@ -11,6 +11,7 @@ import MyOrderItem from './MyOrderItem'
 import { useDispatch, useSelector } from 'react-redux'
 import { loadingBarProgress_Reducer } from '@/app/redux/sharingData/sharingDataSlice'
 import { Loader2Icon } from 'lucide-react'
+import { useRouter } from 'next/navigation'
 
 function MyOrder() {
 
@@ -21,14 +22,17 @@ function MyOrder() {
     const [orderList, setOrderList] = useState([])
 
     const dispatch = useDispatch()
+    const router = useRouter()
 
     useEffect(() => {
         dispatch(loadingBarProgress_Reducer(100)); 
     }, [])
 
     useEffect(() => {
-        if (jwt) {
+        if (jwt){
             getMyOrder()
+        }else{
+            setLoadingOrder(false)
         }
     }, [user, jwt])
 
@@ -47,7 +51,7 @@ function MyOrder() {
             </div>
             <div className='text-center'>
                 {loadingOrder ? <Loader2Icon className='animate-spin m-auto'/> : orderList && orderList.map((item, index) => (
-                    <div key={index} className='overflow-scroll'>
+                    <div key={index} className='overflow-auto'>
                         <Collapsible className='mb-3'>
                             <CollapsibleTrigger>
                                 <div className='w-full border p-2 bg-slate-200 flex justify-evenly gap-24 rounded-md'>
@@ -56,8 +60,7 @@ function MyOrder() {
                                     <h2 ><span className='font-bold mr-2'>Status: </span>{item?.status}</h2>
                                 </div>
                             </CollapsibleTrigger>
-                            <CollapsibleContent>
-                            {/* <p className='bg-pink-500'>Hello</p> */}
+                            <CollapsibleContent className='w-[455px] mx-auto'>
                                 {item.orderItemList.map((order, index_)=>(
                                     <MyOrderItem className='' orderItem={order} key={index_}/>
                                 ))}

@@ -3,6 +3,7 @@ import GlobalApi from '@/app/_utils/GlobalApi';
 import { loadingBarProgress_Reducer, userId_Reducer } from '@/app/redux/sharingData/sharingDataSlice';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { useRouter } from 'next/navigation';
 // import { LoaderCircle } from 'lucide-react';
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,6 +11,7 @@ import { toast } from 'sonner';
 
 const MyProfile = () => {
     const dispatch = useDispatch()
+    const router = useRouter()
 
     const user = useSelector((state) => state.sharingData.userId)
     const jwt = useSelector((state) => state.sharingData.jwt)
@@ -18,7 +20,6 @@ const MyProfile = () => {
     const [email, setEmail] = useState('')
     const [newPassword, setNewPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
-    const createdAt = user.createdAt
 
     const [disableUsername, setDisableUsername] = useState(true)
     const [disableEmail, setDisableEmail] = useState(true)
@@ -27,12 +28,13 @@ const MyProfile = () => {
 
     useEffect(() => {
         dispatch(loadingBarProgress_Reducer(100));
-        if (user) {
-            setUsername(user.username)
-            setEmail(user.email)
-            console.log(createdAt)
-            console.log(username)
-            console.log(email)
+        if (!jwt) {
+            router.push('/sign-in');
+        } else {
+            if (user) {
+                setUsername(user.username)
+                setEmail(user.email)
+            }
         }
     }, [user])
 
@@ -134,7 +136,7 @@ const MyProfile = () => {
                     <button className='text-green-600' onClick={enableUsername}>Edit</button>
                 </div>
                 <div className='flex space-x-2'>
-                    <Input id='username' onChange={(e) => setUsername(e.target.value)} value={username} placeholder={user.username} disabled={disableUsername} />
+                    <Input id='username' onChange={(e) => setUsername(e.target.value)} value={username} placeholder={user ? user.username : ''} disabled={disableUsername} />
                     <Button onClick={updateUserName} disabled={disableUsername}>Save</Button>
                 </div>
             </div>
@@ -145,7 +147,7 @@ const MyProfile = () => {
                     <button className='text-green-600' onClick={enableEmail}>Edit</button>
                 </div>
                 <div className='flex space-x-2'>
-                    <Input onChange={(e) => setEmail(e.target.value)} value={email} placeholder={user.email} disabled={disableEmail} />
+                    <Input onChange={(e) => setEmail(e.target.value)} value={email} placeholder={user ? user.email : ''} disabled={disableEmail} />
                     <Button disabled={disableEmail} onClick={updateUserEmail}>Save</Button>
                 </div>
             </div>

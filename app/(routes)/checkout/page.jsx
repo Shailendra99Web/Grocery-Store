@@ -39,6 +39,8 @@ const Checkout = () => {
             console.log('user' + user.id)
             // getCartItems()
             setTotalCartItem(cartItemList?.length);
+        } else{
+            router.push('/sign-in');
         }
     }, [user, jwt])
 
