@@ -1,6 +1,6 @@
 -- ROXANA KART --
 
-# A simple e-commerce grocery store website.
+# A Simple E-Commerce Grocery Store Website.
 
 # Language(s): 
  HTML,
